@@ -6,12 +6,12 @@
 
 # All test-bench dependencies except test programs
 SV_DEPS += ../common/sv/utils.svh
-# SV_DEPS += ../common/sv/logger_pkg.sv
-# SV_DEPS += ../common/sv/reg_accessor.sv
-# SV_DEPS += ../common/sv/m_axis_sequencer.sv
-# SV_DEPS += ../common/sv/s_axis_sequencer.sv
-# SV_DEPS += ../common/sv/m_axi_sequencer.sv
-# SV_DEPS += ../common/sv/s_axi_sequencer.sv
+SV_DEPS += ../common/sv/logger_pkg.sv
+SV_DEPS += ../common/sv/reg_accessor.sv
+SV_DEPS += ../common/sv/m_axis_sequencer.sv
+SV_DEPS += ../common/sv/s_axis_sequencer.sv
+SV_DEPS += ../common/sv/m_axi_sequencer.sv
+SV_DEPS += ../common/sv/s_axi_sequencer.sv
 # SV_DEPS += ../common/sv/adi_regmap_pkg.sv
 # SV_DEPS += ../common/sv/adi_regmap_tdd_gen_pkg.sv
 SV_DEPS += ../common/sv/test_harness_env.sv

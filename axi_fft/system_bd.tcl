@@ -65,7 +65,7 @@ adi_sim_add_define "S_AXIS_CONFIG=s_axis_config"
 ad_ip_parameter s_axis_config CONFIG.INTERFACE_MODE {SLAVE}
 ad_ip_parameter s_axis_config CONFIG.HAS_TREADY {1}
 ad_ip_parameter s_axis_config CONFIG.HAS_TLAST {1}
-ad_ip_parameter s_axis_config CONFIG.TDATA_NUM_BYTES 2
+ad_ip_parameter s_axis_config CONFIG.TDATA_NUM_BYTES $ad_project_params(CONFIG_NUM_BYTES)
 
 # Connect clock and reset
 ad_connect $sys_cpu_clk dut_axi_fft/s_axi_aclk

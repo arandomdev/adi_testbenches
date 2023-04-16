@@ -65,7 +65,7 @@ program test_program;
 
   axi4stream_monitor_transaction mon_trans;
   xil_axi4stream_data_byte input_data_rec[8];
-  xil_axi4stream_data_byte config_data_rec[2];
+  xil_axi4stream_data_byte config_data_rec[`CONFIG_NUM_BYTES];
 
   initial begin
     // Create the environment
@@ -105,8 +105,8 @@ program test_program;
 
     `INFO(("Test 1: Input data"));
     // Write test data to input blocks
-    for (int i = 0; i < 16; i++) begin
-      env.mng.RegWrite32(`FFT+32'h00000100+(i*4), i);
+    for (int i = 0; i < `N_ELEMENTS; i++) begin
+      env.mng.RegWrite32(`FFT+`ADDR_INPUT_START+(i*4), i);
     end
 
     fork
@@ -114,7 +114,7 @@ program test_program;
       env.mng.RegWrite32(`FFT+32'h0084, 32'h00000000);
 
       // Read data from core and validate
-      repeat (8) begin
+      repeat (`POINT_SIZE) begin
         slv_input_agent.monitor.item_collected_port.get(mon_trans);
         mon_trans.get_data(input_data_rec);
         `INFO(("Input data transaction frame: %x", input_data_rec));
@@ -137,10 +137,10 @@ program test_program;
 
     `INFO(("Test 3: Output data"));
     output_axis_seq.configure(0, 0);
-    output_axis_seq.update(64, 1, 0);
+    output_axis_seq.update(`N_ELEMENTS * 4, 1, 0);
 
     // Push data onto sequencer
-    for (byte i = 0; i < 16; i++) begin
+    for (byte i = 0; i < `N_ELEMENTS; i++) begin
       output_axis_seq.byte_stream.push_back(i);
       output_axis_seq.byte_stream.push_back(0);
       output_axis_seq.byte_stream.push_back(0);
@@ -156,8 +156,8 @@ program test_program;
     end
 
     // Read values
-    for (int i = 0; i < 16; i++) begin
-      env.mng.RegRead32(`FFT+32'h0140+(i*4), regData);
+    for (int i = 0; i < `N_ELEMENTS; i++) begin
+      env.mng.RegRead32(`FFT+`ADDR_OUTPUT_START+(i*4), regData);
       `INFO(("Read output at %d: %x", i, regData));
     end
 

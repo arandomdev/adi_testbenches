@@ -1,9 +1,11 @@
 global ad_project_params
 
 set axi_fft [list \
-  NFFT 8 \
+  NFFT 3 \
   PERI_ID 0 \
   IDENT 0x46465443 \
+  SCALE_SCH_WIDTH 4 \
+  CONFIG_WIDTH 8 \
 ]
 
 set xfft [list \

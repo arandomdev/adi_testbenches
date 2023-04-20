@@ -114,9 +114,9 @@ program test_program;
 
     // Trigger and wait for done
     env.mng.RegWrite32(`FFT+32'h0084, 32'h00000000);
-    env.mng.RegRead32(`FFT+32'h0014, regData);
+    env.mng.RegRead32(`FFT+32'h0044, regData);
     while (!regData[0]) begin
-      env.mng.RegRead32(`FFT+32'h0014, regData);
+      env.mng.RegRead32(`FFT+32'h0044, regData);
     end
 
     // Read values

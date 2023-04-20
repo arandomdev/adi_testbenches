@@ -53,12 +53,12 @@ ad_ip_instance xfft dut_fft $xfft
 ad_connect $sys_cpu_clk dut_axi_fft/s_axi_aclk
 ad_connect $sys_cpu_resetn dut_axi_fft/s_axi_aresetn
 ad_connect $sys_cpu_clk dut_fft/aclk
-ad_connect $sys_cpu_resetn dut_fft/aresetn
 
 # Connect S_AXI to CPU
 ad_cpu_interconnect 0x7c420000 dut_axi_fft
 
 # Connect AXI Core to FFT Core
+ad_connect dut_axi_fft/fft_resetn dut_fft/aresetn
 ad_connect dut_axi_fft/m_axis_i dut_fft/s_axis_data
 ad_connect dut_fft/m_axis_data dut_axi_fft/s_axis_o
 ad_connect dut_axi_fft/m_axis_c dut_fft/s_axis_config

@@ -1,3 +1,6 @@
+# Report
+Report detailing workflow for creating AXI FFT and AXI Loopback Test are available [here](https://github.com/arandomdev/axi_fft_test/blob/9c2fdc32de1b3cd7b569d800763fa02231b1859c/Report.pdf).
+
 # General description
 
 This repository contains testbenches and verification components for system level projects or components connected at block level from the [hdl](https://github.com/analogdevicesinc/hdl) repository.
